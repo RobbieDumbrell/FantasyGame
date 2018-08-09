@@ -1,11 +1,12 @@
 package Weapons;
 
+import Enemies.Enemy;
 import Interfaces.IWeapon;
 
 public class Axe implements IWeapon {
 
     @Override
-    public int attack() {
-        return 20;
+    public void attack(Enemy enemy) {
+        enemy.changeHP(-20);
     }
 }
