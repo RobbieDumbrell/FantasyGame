@@ -22,6 +22,13 @@ public abstract class Mage extends Player {
     public ISpell getMagicWeapon() {
         return magicWeapon;
     }
+    public void setBeast(IDefend beast){
+        this.beast = beast;
+    }
+
+    public void setMagicWeapon(ISpell magicWeapon){
+        this.magicWeapon = magicWeapon;
+    }
 
     public void defend(Enemy enemy){
         this.beast.defend(enemy);
