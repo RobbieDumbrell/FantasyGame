@@ -18,7 +18,7 @@ public class DwarfTest {
     public void before() {
         axe = new Axe();
         sword = new Sword();
-        dwarf = new Dwarf("Duncan", axe, 5.2);
+        dwarf = new Dwarf("Duncan", axe, 5.2, 100);
         troll = new Troll();
     }
     @Test
@@ -51,5 +51,10 @@ public class DwarfTest {
     public void dwarfCanAttackEnemy(){
         dwarf.attack(troll);
         assertEquals(0, troll.getHP());
+    }
+
+    @Test
+    public void hasHeight(){
+        assertEquals(100, dwarf.getHeight());
     }
 }
