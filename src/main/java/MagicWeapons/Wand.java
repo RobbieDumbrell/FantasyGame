@@ -5,7 +5,6 @@ import Interfaces.ISpell;
 
 public class Wand implements ISpell {
 
-
     @Override
     public void cast(Enemy enemy) {
         enemy.changeHP(-5);

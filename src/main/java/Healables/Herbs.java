@@ -5,10 +5,8 @@ import Players.Player;
 
 public class Herbs implements IHeal {
 
-
-
     @Override
-    public void heal(Player player) {
-    player.changeHP(5);
+        public void heal(Player player) {
+        player.changeHP(5);
     }
 }
