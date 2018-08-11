@@ -59,4 +59,10 @@ public class RoomTest {
         assertEquals(null, room1.getOccupant());
     }
 
+    @Test
+    public void canFixExit(){
+        room1.fixExit(Exit.EAST);
+        assertEquals(Exit.EAST, room1.getExit());
+    }
+
 }
