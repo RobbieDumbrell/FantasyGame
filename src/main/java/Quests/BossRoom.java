@@ -8,6 +8,7 @@ public class BossRoom extends Room {
 
     public BossRoom(Enemy boss){
         super();
+        this.isRoomComplete = false;
         this.boss = boss;
     }
 
@@ -15,8 +16,13 @@ public class BossRoom extends Room {
         return boss;
     }
 
-    public void bossAttackPlayer(){
-        this.boss.attack(this.occupant);
+    public boolean checkBossAlive(){
+        if (this.boss.getAliveStatus() == true){
+            return true;
+        } else {
+            this.isRoomComplete = true;
+            return false;
+        }
     }
 
 }

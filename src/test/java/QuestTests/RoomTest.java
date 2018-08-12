@@ -42,27 +42,32 @@ public class RoomTest {
 
     @Test
     public void roomStartsEmpty(){
-        assertEquals(null, room1.getOccupant());
+        assertEquals(null, room1.getOccupants());
     }
 
     @Test
     public void canAddPlayerToRoom(){
-        room1.playerEnters(knight);
-        assertEquals(knight, room1.getOccupant());
+        room1.occupantsEnter(knight);
+        assertEquals(knight, room1.getOccupants());
     }
 
     @Test
     public void playerCanEscape(){
-        room1.playerEnters(knight);
-        assertEquals(knight, room1.getOccupant());
-        room1.playerEscapes();
-        assertEquals(null, room1.getOccupant());
+        room1.occupantsEnter(knight);
+        assertEquals(knight, room1.getOccupants());
+        room1.occupantsEscape();
+        assertEquals(null, room1.getOccupants());
     }
 
     @Test
     public void canFixExit(){
         room1.fixExit(Exit.EAST);
         assertEquals(Exit.EAST, room1.getExit());
+    }
+
+    @Test
+    public void standardRoomStartsComplete(){
+        assertEquals(true, room1.isRoomComplete());
     }
 
 }

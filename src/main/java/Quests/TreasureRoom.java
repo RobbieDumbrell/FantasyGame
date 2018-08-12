@@ -8,6 +8,7 @@ public class TreasureRoom extends Room {
 
     public TreasureRoom(ITreasure treasure){
         super();
+        this.isRoomComplete = false;
         this.treasure = treasure;
     }
 
@@ -17,5 +18,6 @@ public class TreasureRoom extends Room {
 
     public void removeTreasure(){
         this.treasure = null;
+        this.isRoomComplete = true;
     }
 }

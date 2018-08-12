@@ -33,11 +33,18 @@ public class BossRoomTest {
     }
 
     @Test
-    public void bossRoomEnemyCanAttackPlayer(){
-        bossRoom.playerEnters(wizard);
-        bossRoom.bossAttackPlayer();
-        assertEquals(60, wizard.getHP());
+    public void bossRoomStartsNotComplete(){
+        assertEquals(false, bossRoom.isRoomComplete());
     }
 
+    @Test
+    public void bossRoomCompletesWhenBossDeadAndChecked(){
+        wizard.cast(troll);
+        wizard.cast(troll);
+        assertEquals(false, bossRoom.getBoss().getAliveStatus());
+        assertEquals(false, bossRoom.isRoomComplete());
+        bossRoom.checkBossAlive();
+        assertEquals(true, bossRoom.isRoomComplete());
+    }
 
 }

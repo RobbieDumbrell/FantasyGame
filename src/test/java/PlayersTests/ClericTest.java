@@ -41,4 +41,10 @@ public class ClericTest {
         cleric.setMedicine(herbs);
         assertEquals(herbs, cleric.getMedicine());
     }
+
+    @Test
+    public void canChangeTreasureValue(){
+        cleric.changeTreasureValue(10);
+        assertEquals(10, cleric.getTreasureValue());
+    }
 }

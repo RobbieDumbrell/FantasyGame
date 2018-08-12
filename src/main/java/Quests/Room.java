@@ -1,5 +1,6 @@
 package Quests;
 
+import Interfaces.IQuest;
 import Parties.Party;
 import Players.Player;
 
@@ -11,14 +12,14 @@ public class Room {
 
     protected List<Exit> doors;
     protected Exit exit;
-    protected Player occupant;
-    protected Party party;
+    protected IQuest occupants;
+    protected boolean isRoomComplete;
 
     public Room(){
         this.doors = Arrays.asList(Exit.values());
         this.exit = this.generateRandomExit();
-        this.occupant = null;
-        this.party = null;
+        this.occupants = null;
+        this.isRoomComplete = true;
     }
 
     public Exit generateRandomExit(){
@@ -35,35 +36,26 @@ public class Room {
         return exit;
     }
 
-    public Player getOccupant() {
-        return occupant;
+    public IQuest getOccupants() {
+        return occupants;
     }
 
-    public Party getParty() {
-        return party;
+    public boolean isRoomComplete() {
+        return isRoomComplete;
     }
 
-    public void playerEnters(Player player){
-        this.occupant = player;
+    public void occupantsEnter(IQuest occupants){
+        this.occupants = occupants;
     }
 
-    public void partyEnters(Party party){
-        this.party = party;
-    }
-
-    public Player playerEscapes(){
-        Player escapedPlayer = this.occupant;
-        this.occupant = null;
-        return escapedPlayer;
-    }
-
-    public Party partyEscapes(){
-        Party escapedParty = this.party;
-        this.party = null;
-        return escapedParty;
+    public IQuest occupantsEscape(){
+        IQuest escapers = this.occupants;
+        this.occupants = null;
+        return escapers;
     }
 
     public void fixExit(Exit exit){
         this.exit = exit;
     }
+
 }

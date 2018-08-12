@@ -1,6 +1,7 @@
 package Parties;
 
 import Enemies.Enemy;
+import Interfaces.IQuest;
 import Interfaces.ITreasure;
 import Players.Clerics.Cleric;
 import Players.Fighters.Fighter;
@@ -12,7 +13,7 @@ import Quests.TreasureRoom;
 
 import java.util.ArrayList;
 
-public class Party {
+public class Party implements IQuest {
 
     private ArrayList<Player> players;
     private ArrayList<Fighter> fighters;
@@ -82,10 +83,6 @@ public class Party {
         this.players.add(clericAsPlayer);
     }
 
-    public void addTreasure(ITreasure treasure){
-        this.treasureValue += treasure.getValue();
-    }
-
     public void allAttack(Enemy enemy){
         for (Fighter fighter : fighters){
             fighter.attack(enemy);
@@ -95,11 +92,26 @@ public class Party {
         }
     }
 
+    @Override
+    public void addTreasure(ITreasure treasure){
+        this.treasureValue += treasure.getValue();
+    }
+
+    @Override
     public void collectTreasure(TreasureRoom treasureRoom){
         this.addTreasure(treasureRoom.getTreasure());
         treasureRoom.removeTreasure();
     }
 
+    public void shareTreasure(){
+        int splitTreasureValue = (this.treasureValue / playerCount());
+        for (Player player : players){
+            player.changeTreasureValue(splitTreasureValue);
+        }
+        this.treasureValue = 0;
+    }
+
+    @Override
     public boolean tryDoor(Room room, Exit door){
         if (room.getExit() == door){
             return true;
